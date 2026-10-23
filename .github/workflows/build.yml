@@ -19,9 +19,16 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Create plugin JAR
-        run: |
-          mkdir -p src/main/java/com/askyria/plugin
-          mkdir -p src/main/resources
-          echo "No plugin source added yet."
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
 
+      - name: Build plugin
+        run: gradle build
+
+      - name: Upload plugin JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: AskyriaPlugin-JAR
+          path: build/libs/*.jar
