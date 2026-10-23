@@ -1,0 +1,27 @@
+
+name: Build Askyria Plugin
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get project files
+        uses: actions/checkout@v4
+
+      - name: Install Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Create plugin JAR
+        run: |
+          mkdir -p src/main/java/com/askyria/plugin
+          mkdir -p src/main/resources
+          echo "No plugin source added yet."
+
